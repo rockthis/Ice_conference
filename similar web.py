@@ -14,6 +14,7 @@ import re
 from selenium.webdriver.chrome.options import Options
 from decimal import *
 from selenium.webdriver.common.action_chains import ActionChains
+import pyautogui
 
 from openpyxl import load_workbook
 
@@ -39,15 +40,37 @@ for i in range (rows-1):
 
 chrome_options = Options()
 chrome_options.add_extension('/Users/kostyafrolov/Desktop/4.3.0_0.crx');
-driver = webdriver.Chrome(executable_path='/Users/kostyafrolov/Downloads/chromedriver', chrome_options=chrome_options)
-driver.get('http://www.icetotallygaming.com/exhibitor-list')
-sleep(30)
-driver.get("chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/popup.html")
+driver = webdriver.Chrome('/Users/kostyafrolov/Downloads/chromedriver', chrome_options=chrome_options)
+driver.get("https://www.linkedin.com")
 sleep(5)
-soup = BeautifulSoup(driver.page_source, 'lxml')
-print(soup.prettify())
+driver.find_element_by_xpath('//*[@id="login-email"]').send_keys('konstantin@payzoff.com')
+sleep(2)
+driver.find_element_by_xpath('//*[@id="login-password"]').send_keys('kostya13')
+sleep(3)
+driver.find_element_by_xpath('//*[@id="login-password"]').send_keys(Keys.ENTER)
+sleep(3)
+# driver.find_element_by_xpath('//*[@id="login-submit"]').click()
+driver.find_element_by_xpath('//*[@id="main-search-box"]').send_keys(Keys.ENTER)
+sleep(3)
+driver.find_element_by_xpath('//*[@id="search-types"]/div/ul/li[4]/a').click()
+sleep(3)
+driver.find_element_by_xpath('//*[@id="facet-I"]/fieldset/legend').click() #отрасль
+sleep(3)
+driver.find_element_by_xpath('//*[@id="facet-I"]/fieldset/div/div/div/button').click() # добавить
+sleep(3)
+driver.find_element_by_xpath('//*[@id="facet-I"]/fieldset/div/div/input').send_keys('Азарт') # вводим значение отрасли
+sleep(3)
+driver.find_element_by_xpath('//*[@id="pagekey-voltron_company_search_internal_jsp"]/div[1]/div/div[2]/ul/li[1]/h4').click()
+sleep(3)
+
+sleep(10)
+
+# driver.find_element_by_xpath('//*[@id="js-swSearch-input"]').send_keys('ebay.com').send_keys(Keys.ENTER)
+# print(driver.find_elements_by_tag_name("iframe"))
+# print(driver.find_elements_by_tag_name("iframe")[0].get_attribute('id'))
+
 # driver.find_element_by_xpath('//*[@id="quickSearch"]').send_keys('google.com')
-sleep(15)
+
 driver.quit()
 
 

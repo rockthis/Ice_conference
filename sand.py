@@ -1,7 +1,5 @@
-import java.awt
-
-robot = java.awt.Robot()
-
-robot.mouseMove(x, y)
-robot.mousePress(java.awt.event.InputEvent.BUTTON1_MASK)
-robot.mouseRelease(java.awt.event.InputEvent.BUTTON1_MASK)
+import pyautogui
+screenWidth, screenHeight = pyautogui.size()
+for i in range(10):
+      pyautogui.moveTo(100, 100, duration=0.25)
+      pyautogui.moveTo(200, 100, duration=0.25)
